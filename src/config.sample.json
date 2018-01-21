@@ -1,0 +1,11 @@
+{
+    "hosts": [
+        //host ip address    
+    ],
+    "shutdown": [
+        //shutdown command to run
+    ],
+    "start": [
+        //start command to run
+    ]
+}

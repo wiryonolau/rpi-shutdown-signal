@@ -27,6 +27,8 @@ def main():
         log.info("Start all service")
         server.start()
         loop.run_forever()
+    except KeyboardInterrupt:
+        log.info("Receive close signal")
     except:
         log.info(sys.exc_info())
 
@@ -45,8 +47,14 @@ async def shutdown(srv):
 
     asyncio.sleep(1)
 
-    for task in srv.get_task():
-        task.cancel()
+    tasks = srv.get_task()
+    if isinstance(tasks, dict):
+        tasks = list(tasks.values())
+        
+
+    for task in tasks:
+        if not task.cancelled():
+            task.cancel()
 
 if __name__ == "__main__":
     main()
