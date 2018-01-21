@@ -1,11 +1,18 @@
 {
-    "hosts": [
-        //host ip address    
+    "hosts" : [
+        {"ip_address": "192.168.1.8"}
     ],
-    "shutdown": [
-        //shutdown command to run
-    ],
-    "start": [
-        //start command to run
-    ]
+    "_default": {
+        "hosts": {
+            "user": "pi",
+            "password": "raspberry",
+            "shutdown": [
+                {
+                    "script": "shutdown -h now",
+                    "root" : true
+                }
+            ],
+            "start" : []
+        }
+    }
 }

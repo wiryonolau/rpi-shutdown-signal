@@ -4,6 +4,7 @@ import sys
 import time
 
 from gpiozero import Button
+from shutdown import Shutdown
 
 class WatchDog:
     def __init__(self):
@@ -53,6 +54,8 @@ class WatchDog:
 
                 if timeout == 0:
                     self.__log.info("Shutting down")
+                    sh = Shutdown()
+                    sh.start()
                     break
                 timeout -= 1
         except asyncio.CancelledError:
